@@ -7,6 +7,7 @@ require_relative 'models/ingredient'
 
 configure :development, :test do
   require 'pry'
+  set :database_config, { dbname: 'recipes' }
 end
 
 get '/' do
