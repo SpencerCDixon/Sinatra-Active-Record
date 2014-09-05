@@ -10,6 +10,18 @@ configure :development, :test do
   set :database_config, { dbname: 'recipes' }
 end
 
+def db_connection
+  begin
+    connection = PG.connect(dbname: 'recipes')
+    yield(connection)
+  ensure
+    connection.close
+  end
+end
+
+
+
+
 get '/' do
   erb :'index'
 end
